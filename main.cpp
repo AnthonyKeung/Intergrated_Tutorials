@@ -8,22 +8,28 @@
 
 // Blinking rate in milliseconds
 #define BLINKING_RATE     500ms
-
-
-int main()
-{
-    // Initialise the digital pin LED1 as an output
+// Initialise the digital pin LED1 as an output
 #ifdef LED1
     DigitalOut led(LED1);
-    DigitalOut led_board(PC_0);
+    DigitalIn mySwitch(BUTTON1);
 #else
     bool led;
 #endif
 
+int main()
+{
+    mySwitch.mode(PullUp);
+    led = 0 ;
     while (true) 
     {
-        led = ! led;
-        led_board = ! led_board;
-        ThisThread::sleep_for(BLINKING_RATE);
+        if (mySwitch == 1)
+        {
+            led = 1;
+        }
+        else if(mySwitch == 0)
+        {
+            led = 1;
+        }
     }
+    return 0;
 }
