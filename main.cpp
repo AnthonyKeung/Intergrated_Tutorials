@@ -12,6 +12,7 @@
 // Initialise the digital pin LED1 as an output
 #ifdef LED1
     DigitalOut led(PC_0);
+    DigitalOut led2(LED1);
     DigitalIn EncoderA(PA_1);
 #else
     bool led = 0;
@@ -28,10 +29,12 @@ int main()
         if (EncoderAValue == 1)
         {
             led = 1;
+            led2 = 0;
         }
         else
         {
             led = 0;
+            led2 = 1;
         }
     }
 }
