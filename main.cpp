@@ -15,12 +15,15 @@ int main()
     // Initialise the digital pin LED1 as an output
 #ifdef LED1
     DigitalOut led(LED1);
+    DigitalOut led_board(PC_0);
 #else
     bool led;
 #endif
 
-    while (true) {
-        led = !led;
+    while (true) 
+    {
+        led = ! led;
+        led_board = ! led_board;
         ThisThread::sleep_for(BLINKING_RATE);
     }
 }
