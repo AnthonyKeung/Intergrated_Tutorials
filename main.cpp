@@ -13,22 +13,21 @@
     DigitalOut led(LED1);
     DigitalIn mySwitch(BUTTON1);
 #else
-    bool led;
+    bool led = 0;
 #endif
 
 int main()
 {
     mySwitch.mode(PullUp);
-    led = 0 ;
     while (true) 
     {
-        if (mySwitch == 1)
+        if (mySwitch == 0)
         {
             led = 1;
         }
-        else if(mySwitch == 0)
+        else
         {
-            led = 1;
+            led = 0;
         }
     }
     return 0;
