@@ -1,26 +1,15 @@
-/* mbed Microcontroller Library
- * Copyright (c) 2019 ARM Limited
- * SPDX-License-Identifier: Apache-2.0
- */
-
 #include "mbed.h"
-
-
-// Blinking rate in milliseconds
-#define BLINKING_RATE     500ms
-
+#include <cstdio>
 
 int main()
 {
-    // Initialise the digital pin LED1 as an output
-#ifdef LED1
-    DigitalOut led(LED1);
-#else
-    bool led;
-#endif
+    BufferedSerial mypc(USBTX, USBRX); 
+    FILE* mypcFile1 = fdopen(&mypc, "r+");
 
-    while (true) {
-        led = !led;
-        ThisThread::sleep_for(BLINKING_RATE);
+    for (int sec = 0; sec <10; sec++)
+    {
+        fprintf(mypcFile1, "The number of seconds passed is %d\n" ,sec);
+        wait_us(1000000);
     }
+    return 0;
 }
